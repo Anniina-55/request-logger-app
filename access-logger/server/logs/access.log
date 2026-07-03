@@ -1,0 +1,80 @@
+
+Access log info:
+    Route: "/"
+    method: GET,
+    User agent: curl/8.5.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:00:07.300Z
+
+
+Access log info:
+    Route: "/"
+    method: GET,
+    User agent: curl/8.5.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:00:12.053Z
+
+
+Access log info:
+    Route: "/"
+    method: GET,
+    User agent: curl/8.5.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:00:24.333Z
+
+
+Access log info:
+    Route: "/home"
+    method: POST,
+    User agent: curl/8.5.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:00:46.040Z
+
+
+Access log info:
+    Route: "/home"
+    method: GET,
+    User agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:01:15.697Z
+
+
+Access log info:
+    Route: "/favicon.ico"
+    method: GET,
+    User agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:01:17.674Z
+
+
+Access log info:
+    Route: "/home"
+    method: GET,
+    User agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:01:30.793Z
+
+
+Access log info:
+    Route: "/favicon.ico"
+    method: GET,
+    User agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:01:32.771Z
+
+
+Access log info:
+    Route: "/home"
+    method: GET,
+    User agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:02:48.324Z
+
+
+Access log info:
+    Route: "/favicon.ico"
+    method: GET,
+    User agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0,
+    IP address: ::ffff:10.0.2.100,
+    Timestamp: 2026-06-18T00:02:50.302Z
+

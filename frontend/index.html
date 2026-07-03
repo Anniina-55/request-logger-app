@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Logging Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+      background: #061f13;
+      color: #e6e6e6;
+    }
+
+    h2 { margin-bottom: 10px; }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .left {
+      flex: 2;
+    }
+
+    .right {
+      flex: 1;
+      position: sticky;
+      top: 20px;
+    }
+
+    .stats {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #254d3d;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #293631;
+      font-size: 14px;
+    }
+
+    tr:hover {
+      background: #254d3d;
+      cursor: pointer;
+    }
+
+    #details {
+      padding: 10px;
+      background: #113521;
+      border: 1px solid #333;
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
+
+    .details-wrap {
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: #e6e6e6;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+   .close-btn:hover {
+      color: #f44336;
+    }
+
+    .status-200 { color: #4caf50; }
+    .status-400 { color: #ff9800; }
+    .status-500 { color: #f44336; }
+  </style>
+</head>
+
+<body>
+
+<h2>API Request monitor</h2>
+
+<div class="container">
+ <div class="left">
+    <div class="stats" id="stats">Loading...</div>
+        <table>
+            <thead>
+                <tr>
+                <th>Time</th>
+                <th>Method</th>
+                <th>Path</th>
+                <th>Status</th>
+                <th>Latency</th>
+                </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+        </table>
+    </div>
+ <div class="right">
+   <div class="details-wrap">
+    <button class="close-btn" onclick="closeDetails()">x</button>
+    <div id="details">Click request for more info...</div>
+   </div>
+ </div>
+</div>
+
+<script>
+const API = fetch("/api/logs");
+
+function closeDetails() {
+    document.getElementById("details").innerText = "Click request for more info...";
+}
+
+async function load() {
+  const res = await fetch(API);
+  const logs = (await res.json()).reverse().slice(0, 20);
+
+  const rows = document.getElementById("rows");
+  rows.innerHTML = "";
+
+  let total = logs.length;
+  let avg = logs.reduce((a, b) => a + (b.duration_ms || 0), 0) / (total || 1);
+
+  document.getElementById("stats").innerText =
+    `Requests: ${total} | Avg latency: ${avg.toFixed(2)} ms`;
+
+  logs.forEach(log => {
+    const tr = document.createElement("tr");
+
+    const statusClass = `status-${log.status}`;
+
+    tr.innerHTML = `
+      <td>${new Date(log.timestamp).toLocaleTimeString()}</td>
+      <td>${log.method}</td>
+      <td>${log.path}</td>
+      <td class="${statusClass}">${log.status}</td>
+      <td>${log.duration_ms}</td>
+    `;
+
+    tr.onclick = () => {
+      document.getElementById("details").innerText =
+        JSON.stringify(log, null, 2);
+    };
+
+    rows.appendChild(tr);
+  });
+}
+
+load();
+setInterval(load, 2000);
+</script>
+
+</body>
+</html>
